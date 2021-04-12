@@ -1,9 +1,9 @@
 //librerias uwu.
-const express = require("express")
-const morgan = require("morgan")
-const app = express()
+const express = require("express");
+const morgan = require("morgan");
+const app = express();
 
-//opciones.
+//config
 app.set('port',process.env.PORT || 3000);
 app.set('json spaces',2);
 
@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 //routes
-app.use(require('./routes/index'));
+app.use(require('./routes/mangas'));
 
 //server.
 app.listen(app.get('port'), ()=>{

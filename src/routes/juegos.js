@@ -2,10 +2,10 @@ const {Router} = require("express")
 const router = Router();
 
 
-router.get('/api/Mangas',(req,res) => {
+router.get('/api/Juegos',(req,res) => {
 
         res.json({
-        "title":"Naruto",
+        "title":"Left for dead",
         "precio":"5.000$"
     });
 

@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const app = express();
 
 //config
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 4000);
 app.set('json spaces',2);
 
 //middlewares.
@@ -15,6 +15,11 @@ app.use(express.json());
 
 //routes
 app.use(require('./routes/mangas'));
+app.use(require('./routes/comics'));
+app.use(require('./routes/juegos'));
+app.use(require('./routes/hardware'));
+app.use(require('./routes/figuras'));
+app.use(require('./routes/libros'));
 
 //server.
 app.listen(app.get('port'), ()=>{

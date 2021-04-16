@@ -2,7 +2,7 @@ const {Router} = require("express")
 const router = Router();
 
 
-router.get('/api/Figuras',(req,res) => {
+router.get('/api/Merchandising',(req,res) => {
 
         res.json({
         "title":"Rem tamaño real",

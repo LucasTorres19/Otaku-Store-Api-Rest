@@ -6,7 +6,8 @@ router.get('/', async (req,res) =>{
 
     const db = await connection();
     
-    const TotalResgritos = db.collection('Comics').find({}).toArray(function(err, result) {
+    db.collection('Comics').find({}).toArray(function(err, result) {
+     
         if (err) throw err; 
         res.send(result);
     });
@@ -19,7 +20,7 @@ router.post('/',async (req,res)  =>{
 
     const db = await connection();
     
-        db.collection('Comics').insertOne(req.body);
+    db.collection('Comics').insertOne(req.body);
 
     res.send("Guardado")
 

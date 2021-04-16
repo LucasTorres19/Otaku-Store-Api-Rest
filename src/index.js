@@ -2,20 +2,7 @@
 const express = require("express"); 
 const morgan = require("morgan");
 
-//imports
-// const connection = require("./database/connect");
-
 const app = express();
-
-// const init = async () => {
-//     const db = await connection(); // obtenemos la conexión
-  
-//     await db.collection('user').insertOne({ // insertamos un usuario
-//       name: 'devsin.site'
-//     });
-//   };
-  
-  //init();
 
 //config
 

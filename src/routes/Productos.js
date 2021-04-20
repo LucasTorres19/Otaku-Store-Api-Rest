@@ -17,11 +17,13 @@ router.get('/', async (req,res) =>{
 
 router.post('/',async (req,res)  =>{
 
-    const {title , precio , img,type,desc,cat} = req.body 
+    const {title,precio,img,type,desc,cat,stock,ventas} = req.body 
 
     const db = await connection();
     
-    if(title && precio && img && type && desc && cat){
+    //verificando que existen las varibles.
+    
+    if(title && precio && img && type && desc && cat && stock && ventas){
     
         db.collection('Productos').insertOne(req.body);
 
@@ -31,19 +33,21 @@ router.post('/',async (req,res)  =>{
         res.send("Error al Cargar.");
     }
     
-
 });
 
 router.put('/:id',async (req,res) =>{
 
     const db = await connection();
-    const {title,precio,img,type,desc,cat} = req.body;
+    const {title,precio,img,type,desc,cat,stock,ventas} = req.body;
     const param = req.params
 
-    if(title && precio && img && type && desc && cat){
+    if(title && precio && img && type && desc && cat && stock && ventas){
       
         db.collection('Productos').updateOne({_id: ObjectId(param.id)}, {$set:req.body},{ upsert: true })
         res.send("Actualizado.")
+    }
+    else{
+        res.send("Error al actualizar el producto.")
     }
 
 });

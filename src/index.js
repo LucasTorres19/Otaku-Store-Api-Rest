@@ -13,8 +13,8 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 //routes
-
 app.use("/api/productos",require('./routes/Productos'));
+app.use("/api/usuarios",require('./routes/Usuarios'));
 
 
 //server.

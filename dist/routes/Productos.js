@@ -9,14 +9,14 @@ var _require = require("express"),
 
 var router = Router();
 
-var connection = require("./../database/connect");
+var connection = require("../connectdb");
 
 var _require2 = require("bson"),
     ObjectId = _require2.ObjectId;
 
 router.get('/', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
-    var db;
+    var db, result;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -26,12 +26,14 @@ router.get('/', /*#__PURE__*/function () {
 
           case 2:
             db = _context.sent;
-            db.collection('Productos').find({}).toArray(function (err, result) {
-              if (err) throw err;
-              res.send(result);
-            });
+            _context.next = 5;
+            return db.collection('Productos').find({}).toArray();
 
-          case 4:
+          case 5:
+            result = _context.sent;
+            res.json(result);
+
+          case 7:
           case "end":
             return _context.stop();
         }

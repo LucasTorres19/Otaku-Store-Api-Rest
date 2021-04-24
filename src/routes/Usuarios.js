@@ -1,16 +1,15 @@
-const {Router } = require("express");
+const { Router } = require("express");
 const router = Router();
-const connection = require("./../database/connect");
+const connection = require("../connectdb");
 const { ObjectId } = require("bson");
 
 router.get('/',async(req,res)=>{
 
     const db = await connection();
     
-    db.collection('Usuarios').find({}).toArray(function(err, result) {
-        if (err) throw err; 
-        res.send(result);
-    });
+    const result = await db.collection('Usuarios').find({}).toArray();
+    
+    res.json(result)
 
 });
 

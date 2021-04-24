@@ -7,26 +7,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var _require = require('mongodb'),
     MongoClient = _require.MongoClient;
 
-var dbName = 'mqmStore';
-var url = "mongodb://wachiraton11:soyhermosho11@cluster0-shard-00-00.skuwb.mongodb.net:27017,cluster0-shard-00-01.skuwb.mongodb.net:27017,cluster0-shard-00-02.skuwb.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-7twvaf-shard-0&authSource=admin&retryWrites=true&w=majority";
-var client = new MongoClient(url, {
-  useUnifiedTopology: true
-});
 module.exports = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+  var dbName, url, client, db;
   return regeneratorRuntime.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          dbName = 'mqmStore';
+          url = "mongodb://wachiraton11:soyhermosho11@cluster0-shard-00-00.skuwb.mongodb.net:27017,cluster0-shard-00-01.skuwb.mongodb.net:27017,cluster0-shard-00-02.skuwb.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-7twvaf-shard-0&authSource=admin&retryWrites=true&w=majority";
+          _context.prev = 2;
+          client = new MongoClient(url, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true
+          });
+          _context.next = 6;
           return client.connect();
 
-        case 2:
-          return _context.abrupt("return", client.db(dbName));
+        case 6:
+          db = client.db(dbName);
+          return _context.abrupt("return", db);
 
-        case 3:
+        case 10:
+          _context.prev = 10;
+          _context.t0 = _context["catch"](2);
+          console.log(_context.t0);
+
+        case 13:
         case "end":
           return _context.stop();
       }
     }
-  }, _callee);
+  }, _callee, null, [[2, 10]]);
 }));

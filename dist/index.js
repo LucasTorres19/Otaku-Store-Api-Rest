@@ -1,5 +1,7 @@
 "use strict";
 
+require("babel-polyfill");
+
 var express = require("express");
 
 var morgan = require("morgan");

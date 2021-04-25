@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 //nombre && estado && mail && genero && contraseña && dir || telefono
 const UsuariosSchema = new Schema({
 
-    producto:{
         nombre:{type:String},
         estado:{type:Number},
         mail:{type:String},
@@ -13,8 +12,7 @@ const UsuariosSchema = new Schema({
         contraseña:{type:String},
         dir:{type:String},
         telefono:{type:Number},
-    }
 
 });
 
-module.exports = mongoose.model('Productos',UsuariosSchema)
+module.exports = mongoose.model('Usuarios',UsuariosSchema)

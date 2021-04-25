@@ -1,21 +1,17 @@
-const { ObjectID } = require('bson');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
 const ProductosSchema = new Schema({
 
-    producto:{
-
         title:String,
         precio:Number,
-        img:Number,
-        type:Number,
+        img:String,
+        type:String,
         desc:String,
         cat:String,
         stock:Number,
-        ventas:Number
-    }
+        ventas:Number    
 
 });
 

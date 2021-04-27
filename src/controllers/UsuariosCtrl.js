@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken')
+const UsuariosModel = require('./../models/UsuariosModel')
 const UsuarioModel = mongoose.model('Usuarios')
 
 exports.findAllUsuarios = function(req,res){
@@ -21,7 +23,7 @@ exports.FindById = function(req,res){
     })
 };
 
-exports.AddUser = function(req,res){
+exports.AddUser = async function (req,res){
 
     console.log("POST");
     console.log(req.body);
@@ -38,9 +40,13 @@ exports.AddUser = function(req,res){
 
     });
 
-   usuario.save(function(err,usuarios){
+    usuario.contraseña = await usuario.encryptarPass(usuario.contraseña);
+
+    const token = jwt.sign({id: usuario._id},'miami');
+
+     usuario.save(function(err,usuarios){
         if(err) return res.status(500).send(err.message);
-        res.status(200).jsonp(usuarios)
+        res.status(200).jsonp({auth:true,token})
     })
 
 };

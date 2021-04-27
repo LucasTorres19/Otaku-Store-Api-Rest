@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
 //nombre && estado && mail && genero && contraseña && dir || telefono
 const UsuariosSchema = new Schema({
@@ -14,5 +14,14 @@ const UsuariosSchema = new Schema({
         telefono:{type:Number},
 
 });
+
+UsuariosSchema.methods.encryptarPass = async (contraseña) =>{
+
+        const salt = await bcrypt.genSalt(12);
+
+        return bcrypt.hash(contraseña,salt)
+
+};
+
 
 module.exports = mongoose.model('Usuarios',UsuariosSchema)

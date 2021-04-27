@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ProductosModel = require('./../models/productosModel');
 const Productos = mongoose.model('Productos')
 
 exports.findAllProductos = function(req,res){

@@ -15,17 +15,56 @@ var UsuarioModel = mongoose.model('Usuarios');
 exports.findAllUsuarios = function (req, res) {
   UsuarioModel.find(function (err, usuarios) {
     if (err) return res.send(500, err.message);
-    console.log('GET /usuarios');
-    res.status(200).json(usuarios);
+    var token = req.headers['x-access-token'];
+
+    if (!token) {
+      return res.status(401).json({
+        auth: false,
+        Message: "No tienes Token"
+      });
+    }
+
+    try {
+      var tokendecodificado = jwt.verify(token, 'miami');
+      console.log('GET /usuarios');
+      res.status(200).json(usuarios);
+    } catch (err) {
+      console.log(err);
+      res.status(401).json({
+        error: err
+      });
+    }
   });
 };
 
 exports.FindById = function (req, res) {
-  UsuarioModel.findById(res.params.id, function (err, usuarios) {
-    if (err) return res.send(500, err.message);
-    console.log('GET /usuarios/' + req.params.id);
-    res.status(200).jsonp(usuarios);
-  });
+  var token = req.headers['x-access-token'];
+
+  if (!token) {
+    return res.status(401).json({
+      auth: false,
+      Message: "No tienes Token"
+    });
+  }
+
+  try {
+    var tokendecodificado = jwt.verify(token, 'miami');
+
+    if (!tokendecodificado.id) {
+      return res.status(404).send("Usuario no encontrado.");
+    }
+
+    UsuarioModel.findById(req.params.id, function (err, usuarios) {
+      if (err) return res.send(500, err.message);
+      console.log('GET /usuarios/' + req.params.id);
+      res.status(200).jsonp(usuarios);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(401).json({
+      error: err
+    });
+  }
 };
 
 exports.AddUser = /*#__PURE__*/function () {
@@ -53,7 +92,9 @@ exports.AddUser = /*#__PURE__*/function () {
             usuario.contraseña = _context.sent;
             token = jwt.sign({
               id: usuario._id
-            }, 'miami');
+            }, 'miami', {
+              expiresIn: 60 * 60 * 8760
+            });
             usuario.save(function (err, usuarios) {
               if (err) return res.status(500).send(err.message);
               res.status(200).jsonp({

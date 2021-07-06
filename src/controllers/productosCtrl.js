@@ -5,6 +5,7 @@ const Productos = mongoose.model('Productos')
 exports.findAllProductos = function(req,res){
 
     Productos.find(function(err,Productos){
+        
         if(err) return res.send(500,err.message);
         
         console.log('GET /productos');
@@ -12,14 +13,17 @@ exports.findAllProductos = function(req,res){
     })
 }
 
-exports.FindById = function(req,res){
+exports.FindByid = function(req,res){
 
-    Productos.findById(res.params.id , function(err,productos){
+    Productos.findById(req.params.id, function(err, productos) {
         if(err) return res.send(500,err.message);
 
-        console.log('GET /productos/' + req.params.id);
-        res.status(200).jsonp(productos);
-    })
+         console.log('GET /productos/' + req.params.id);
+         
+         res.status(200).jsonp(productos);
+
+        })
+
 };
 
 exports.AddProducto = function(req,res){

@@ -26,7 +26,7 @@ Productos.route('/productos')
 .post(ProductosCtrl.AddProducto);
 
 Productos.route('/productos/:id')
-.get(ProductosCtrl.FindById)
+.get(ProductosCtrl.FindByid) //?
 .put(ProductosCtrl.UpdateProductos)
 .delete(ProductosCtrl.deleteProducto)
 

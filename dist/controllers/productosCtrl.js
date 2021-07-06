@@ -14,8 +14,8 @@ exports.findAllProductos = function (req, res) {
   });
 };
 
-exports.FindById = function (req, res) {
-  Productos.findById(res.params.id, function (err, productos) {
+exports.FindByid = function (req, res) {
+  Productos.findById(req.params.id, function (err, productos) {
     if (err) return res.send(500, err.message);
     console.log('GET /productos/' + req.params.id);
     res.status(200).jsonp(productos);

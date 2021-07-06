@@ -28,7 +28,8 @@ app.use(express.json()); //routes
 
 app.use("/", require('./routes/home'));
 Productos.route('/productos').get(ProductosCtrl.findAllProductos).post(ProductosCtrl.AddProducto);
-Productos.route('/productos/:id').get(ProductosCtrl.FindById).put(ProductosCtrl.UpdateProductos)["delete"](ProductosCtrl.deleteProducto);
+Productos.route('/productos/:id').get(ProductosCtrl.FindByid) //?
+.put(ProductosCtrl.UpdateProductos)["delete"](ProductosCtrl.deleteProducto);
 Usuarios.route('/usuarios').get(UsuariosCrtl.findAllUsuarios).post(UsuariosCrtl.AddUser);
 Usuarios.route('/usuarios/:id').get(UsuariosCrtl.FindById).put(UsuariosCrtl.UpdateUsuario)["delete"](UsuariosCrtl.deleteUsuario);
 app.use('/api', Productos);

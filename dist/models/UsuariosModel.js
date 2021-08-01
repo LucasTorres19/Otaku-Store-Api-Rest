@@ -23,7 +23,7 @@ var UsuariosSchema = new Schema({
   },
   genero: {
     type: String,
-    "enum": ['Hombre', 'Mujer', 'Otro']
+    "enum": ['Masculino', 'Femenino', 'Otro']
   },
   contraseña: {
     type: String

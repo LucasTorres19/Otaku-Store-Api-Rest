@@ -6,8 +6,8 @@ const UsuarioModel = mongoose.model('Usuarios')
 exports.findAllUsuarios = function(req,res){
 
     UsuarioModel.find( function(err,usuarios){
-        if(err) return res.send(500,err.message);
-        
+        if(err) return res.status(500).send({ message: 'Correo ya utilizado' });
+
         const token = req.headers['x-access-token'];
         
         if (!token){

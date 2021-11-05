@@ -7,7 +7,10 @@ const UsuariosSchema = new Schema({
 
         nombre:{type:String},
         estado:{type:Number},
-        mail:{type:String},
+        mail:{
+                type:String,
+                unique:true
+        },
         genero:{type:String,enum:['Masculino','Femenino','Otro']},
         contraseña:{type:String},
         dir:{type:String},

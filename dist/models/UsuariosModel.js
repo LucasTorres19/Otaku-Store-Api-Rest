@@ -19,7 +19,8 @@ var UsuariosSchema = new Schema({
     type: Number
   },
   mail: {
-    type: String
+    type: String,
+    unique: true
   },
   genero: {
     type: String,
